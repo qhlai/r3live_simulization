@@ -18,7 +18,6 @@
           izz="0.01"/>
     </inertial>
   </xacro:macro>
-  
   <xacro:macro name="Livox_Mid_gazebo_sensor" params="visualize:=True update_rate:=10 resolution:=0.002 noise_mean:=0.0 noise_stddev:=0.01 name:=livox">
     <gazebo reference="${name}">
       <sensor type="ray" name="laser_${name}">
@@ -93,8 +92,7 @@
     </joint>
     <xacro:Livox_Mid_gazebo_sensor name="${name}" visualize="${visualize}"/>
   </xacro:macro>
-  
-
+    <!--xacro:Livox_AVIA name="livox" visualize="false" /-->
   <!--xacro:include filename="$(find livox_laser_simulation)/urdf/standardrobots_oasis300.xacro"/>
   <xacro:link_oasis name="oasis"/-->
 </robot>
