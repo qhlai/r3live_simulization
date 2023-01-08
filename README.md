@@ -1,4 +1,4 @@
-# robot_gazebo
+# r3live_simulization
 Scout2 robot carrying  livox avia lidar/IMU/D435 sensors，running r3live in a room!
 
 The project is under development
@@ -22,7 +22,7 @@ The project is under development
 
 [r3live](https://github.com/hku-mars/r3live)
 
-
+[Some details](https://blog.kquark.com/post/26/)
 [Some additions](https://blog.kquark.com/post/24/)
 
 
