@@ -27,6 +27,8 @@
             <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
         </collision>
         <xacro:cylinder_inertial_matrix m="${support_m}" r="${support_radius}" h="${support_length}" />
+        <kinematic>1</kinematic>
+		<gravity>9.8</gravity>
     </link>
 
     <joint name="support2base_link" type="fixed">
@@ -34,6 +36,7 @@
         <child link="support" />
         <origin xyz="${support_x_size} ${support_y_size} ${support_z_size}" />
     </joint>
+    
     <gazebo reference="support">
         <material>Gazebo/White</material>
     </gazebo>

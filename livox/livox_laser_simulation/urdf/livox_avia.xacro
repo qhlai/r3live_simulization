@@ -60,6 +60,8 @@
         </plugin>
       </sensor>
     </gazebo>
+    
+    
   </xacro:macro>
 
   <xacro:macro name="Livox_AVIA" params="visualize:=True name:=livox">
@@ -91,8 +93,9 @@
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
     </joint>
     <xacro:Livox_Mid_gazebo_sensor name="${name}" visualize="${visualize}"/>
+    
   </xacro:macro>
-    <xacro:Livox_AVIA name="livox" visualize="false" />
+    <xacro:Livox_AVIA name="livox"/>
   <xacro:include filename="$(find livox_laser_simulation)/urdf/standardrobots_oasis300.xacro"/>
   <xacro:link_oasis name="oasis"/>
 </robot>

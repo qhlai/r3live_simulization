@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="livox_a"  xmlns:xacro="http://wiki.ros.org/xacro">  
 	
   <xacro:property name="M_PI" value="3.14159"/> 
   <xacro:property name="laser_min_range" value="0.1"/>
@@ -13,13 +13,16 @@
   <xacro:macro name="null_inertial">
     <inertial>
       <mass value="0.1"/>
-    <inertia ixx="0.01" ixy="0" ixz="0"
-          iyy="0.01" iyz="0"
-          izz="0.01"/>
+      <origin xyz="0.0 0.0 0.0" />
+     <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
     </inertial>
   </xacro:macro>
+  
+  
+  
   <xacro:macro name="Livox_Mid_gazebo_sensor" params="visualize:=True update_rate:=10 resolution:=0.002 noise_mean:=0.0 noise_stddev:=0.01 name:=livox">
     <gazebo reference="${name}">
+        <gravity>1</gravity>
       <sensor type="ray" name="laser_${name}">
         <pose>0 0 0 0 0 0</pose>
         <visualize>${visualize}</visualize>
@@ -60,9 +63,17 @@
         </plugin>
       </sensor>
     </gazebo>
+
+<!--    <joint name="${name}_to_laser_${name}_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="laser_${name}"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    </joint>
+    -->
+    
   </xacro:macro>
 
-  <xacro:macro name="Livox_AVIA" params="visualize:=True name:=livox">
+  <xacro:macro name="Livox_AVIA" params="visualize:=True name:=livox parent:=base_link">
     <link name="${name}_base">
       <xacro:null_inertial/>
       <visual> 
@@ -80,6 +91,7 @@
           </mesh>
           </geometry>
       </collision>
+      
     </link>
     <link name="${name}">
       <xacro:null_inertial/>
@@ -90,9 +102,19 @@
       <child link="${name}"/>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
     </joint>
+
     <xacro:Livox_Mid_gazebo_sensor name="${name}" visualize="${visualize}"/>
+    
+    <!--  not elegent solution for sensor's tf error    -->
+    <!--<joint name="${name}_to_${name}_sensor_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="laser_${name}"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    </joint>   -->
   </xacro:macro>
-    <!--xacro:Livox_AVIA name="livox" visualize="false" /-->
-  <!--xacro:include filename="$(find livox_laser_simulation)/urdf/standardrobots_oasis300.xacro"/>
-  <xacro:link_oasis name="oasis"/-->
+  
+<!--    <xacro:Livox_AVIA name="livox" visualize="true" />-->
+    
+<!--  <xacro:include filename="$(find livox_laser_simulation)/urdf/standardrobots_oasis300.xacro"/>
+  <xacro:link_oasis name="oasis"/>-->
 </robot>

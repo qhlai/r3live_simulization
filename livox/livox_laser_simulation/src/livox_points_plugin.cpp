@@ -60,7 +60,11 @@ void LivoxPointsPlugin::Load(gazebo::sensors::SensorPtr _parent, sdf::ElementPtr
 
     raySensor = _parent;
     auto sensor_pose = raySensor->Pose();
-    SendRosTf(sensor_pose, raySensor->ParentName(), raySensor->Name());
+    
+    SendRosTf(sensor_pose, raySensor->ParentName(), raySensor->Name());  
+//     ROS_INFO_STREAM("[load] livox sensor father's name:" << raySensor->ParentName());
+//     ROS_INFO_STREAM("[load] livox sensor's name:" << raySensor->Name());
+//     ROS_INFO_STREAM("[new scan] try dirty fix");
 
     node = transport::NodePtr(new transport::Node());
     node->Init(raySensor->WorldName());
@@ -118,7 +122,12 @@ void LivoxPointsPlugin::OnNewLaserScans() {
         InitializeScan(scan);
 
         SendRosTf(parentEntity->WorldPose(), world->Name(), raySensor->ParentName());
-
+        
+//         ROS_INFO_STREAM("[new scan] livox sensor world's name:" << world->Name());
+//         ROS_INFO_STREAM("[new scan] livox sensor parent's name:" << raySensor->ParentName());
+//         ROS_INFO_STREAM("[new scan] try dirty fix");
+//         SendRosTf(parentEntity->WorldPose(), world->Name(), "base_link");
+        
         auto rayCount = RayCount();
         auto verticalRayCount = VerticalRayCount();
         auto angle_min = AngleMin().Radian();

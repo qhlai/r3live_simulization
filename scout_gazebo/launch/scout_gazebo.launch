@@ -2,10 +2,9 @@
 <launch>
     <!--- Sim Time -->
     <!-- <param name="/use_sim_time" value="true" /> -->
-
     <arg name = "model_xacro" default = "$(find scout_gazebo)/urdf/base.xacro" />
     <!-- 将 Urdf 文件的内容加载到参数服务器 -->
-    <param name="robot_description" command="$(find xacro)/xacro $(arg model_xacro)" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model_xacro)" />
     <!-- Launch  the joint state publisher -->
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
     <!-- Launch  the robot state publisher -->
@@ -17,9 +16,16 @@
     <!-- 在 gazebo 中启动一个环境 -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch"> 
         <arg name="world_name" value="$(find scout_gazebo)/worlds/lab.world" /> 
+        <arg name="paused" value="false"/> 
+        <arg name="use_sim_time" value="true"/> 
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/> 
+        <arg name="verbose" value="true"/>
     </include>
+    
     <!-- 在 gazebo 中加载机器人模型  -->
     <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model scout -param robot_description"  />  
     
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find livox_laser_simulation)/rviz/livox_simulation.rviz"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find scout_gazebo)/rviz/livox_simulation.rviz"/>
 </launch>
