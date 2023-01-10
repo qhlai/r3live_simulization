@@ -49,9 +49,15 @@
     </xacro:VLP-16-->
     <!-- livox AVIA激光雷达 -->
     <xacro:include filename="$(find scout_gazebo)/urdf/laser_support.xacro" />
-    <xacro:include filename="$(find scout_gazebo)/urdf/livox_avia.xacro"/>
-    <xacro:Livox_AVIA name="livox" visualize="true" parent="support"/>
     
+  <xacro:include filename="$(find scout_gazebo)/urdf/livox_avia.xacro"/>
+  <Livox_Avia name="livox" visualize="false" publish_pointcloud_type="0"/>
+  
+    <!-- <xacro:include filename="$(find livox_laser_simulation)/urdf/livox_horizon.xacro"/>
+  <Livox_Horizon name="livox" visualize="true" publish_pointcloud_type="2"/> -->
+
+<!--    <xacro:include filename="$(find scout_gazebo)/urdf/livox_avia.xacro"/>
+    <xacro:Livox_AVIA name="livox" visualize="true" parent="support"/>-->
     <joint name="livox_base_joint" type="fixed">
         <parent link="support"/>
         <child link="livox_base"/>

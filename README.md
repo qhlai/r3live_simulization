@@ -1,5 +1,5 @@
 # r3live_simulization
-Scout2 robot carrying  livox avia lidar/IMU/D435 sensors，running r3live in a room!
+Scout2 robot carrying  livox avia lidar/IMU/D435 sensors，running r3live in a room
 
 The project is under development
 
@@ -14,7 +14,7 @@ The project is under development
 
 ### Development Environment
 
-* Ubuntu 18.04 + ROS melodic + gazebo9
+* Ubuntu 18.04 + ROS melodic + gazebo11!
 
 ### Download and install required function package
 
