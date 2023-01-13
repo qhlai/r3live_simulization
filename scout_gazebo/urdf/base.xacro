@@ -54,7 +54,7 @@
     <xacro:include filename="$(find scout_gazebo)/urdf/laser_support.xacro" />
     
   <xacro:include filename="$(find scout_gazebo)/urdf/livox_avia.xacro"/>
-  <Livox_Avia name="livox" visualize="false" publish_pointcloud_type="0"/>
+  <Livox_Avia name="livox" visualize="false" publish_pointcloud_type="1"/>
   
 <!--    <joint name="livox_base_joint" type="fixed">
         <parent link="support"/>
