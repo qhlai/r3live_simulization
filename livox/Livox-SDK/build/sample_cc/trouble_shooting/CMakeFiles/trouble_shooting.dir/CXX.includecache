@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../sdk_core/include/livox_def.h
+stdint.h
+-
+
+../sdk_core/include/livox_sdk.h
+stdbool.h
+-
+stdint.h
+-
+livox_def.h
+../sdk_core/include/livox_def.h
+
+/home/lqh/robot_ws/src/livox_ros_driver_for_R2LIVE/livox_ros_driver/Livox-SDK/sample_cc/trouble_shooting/main.cpp
+stdio.h
+-
+stdlib.h
+-
+windows.h
+-
+unistd.h
+-
+string
+-
+map
+-
+livox_sdk.h
+/home/lqh/robot_ws/src/livox_ros_driver_for_R2LIVE/livox_ros_driver/Livox-SDK/sample_cc/trouble_shooting/livox_sdk.h
+
