@@ -2,34 +2,32 @@
 A package to provide plug-in for [Livox Series LiDAR](https://www.livoxtech.com).
 
 ## Requirements
-- ROS(=Kinectic/Melodic)
-- Gazebo (= 7.0/9.0)
+- ROS(=Melodic/Noetic)
+- Gazebo (= 11)
 
 ## Results
 ![](resources/total.gif)
 
 ## Branchs
 
-### main branch
-- enviroment: ROS kinetic + gazebo7
-- pointcloud type: 
-  - sensor_msg::pointcloud
-  - sensor_msg::pointcloud2(pcl::Pointcloud\<pcl::PointXYZ\>)
-  - sensor_msg::pointcloud2(pcl::Pointcloud\<pcl::LivoxPointXyzrtl\>)
-  - livox_ros_driver::CustomMsg
-  <!-- - livox_ros_driver::CustomMsg -->
 
-### gazebo9
-- enviroment: ROS melodic + gazebo7
+
+### master(gazebo11)
+- enviroment: ROS melodic + gazebo11
 - pointcloud type: sensor_msg::pointcloud2(pcl::Pointcloud\<pcl::PointXYZ\>)
 
 ## Dependence
 
 - [livox_ros_driver](https://github.com/Livox-SDK/livox_ros_driver)
 
+or
+
+- [livox_ros_driver_for_R2LIVE](https://github.com/ziv-lin/livox_ros_driver_for_R2LIVE)
+
+
 ## Usage
 
-> If you use gazebo 9, checkout to "gazebo-9-ver" branch. The gazebo-9 version is maintained by [jp-ipu](https://github.com/jp-ipu).
+> If you use gazebo 9. The gazebo-9 version is maintained by [jp-ipu](https://github.com/jp-ipu).
 
 Before you write your urdf file by using this plugin, catkin_make/catkin build is needed.
 
@@ -64,9 +62,6 @@ Change sensor by change the following lines in the robot.xacro into another xacr
 - downsample: 1 // we can increment this para to decrease the consumption
 - publish_pointcloud_type: 0 // 0 for sensor_msgs::PointCloud, 1 for sensor_msgs::Pointcloud2(PointXYZ), 2 for sensor_msgs::PointCloud2(LivoxPointXyzrtl) 3 for livox_ros_driver::CustomMsg.
 
-## Simulation for mapping
-Currently [Fast-LIO](https://github.com/hku-mars/FAST_LIO) is tested when publish_pointcloud_type = 3。
 
-Enjoy it and feel free to report bugs.
+> This repository is forked from [Livox-SDK/livox_laser_simulation](https://github.com/Livox-SDK/livox_laser_simulation) and [lvfengchi/livox_laser_simulation](https://github.com/lvfengchi/livox_laser_simulation), I just made some minor adjustments.
 
-> This repository is now maintained by [EpsAvlc](https://github.com/EpsAvlc) and LvFengchi.

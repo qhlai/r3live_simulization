@@ -4,6 +4,8 @@
 
     <xacro:arg name="robot_namespace" default="/" /> 
 
+    <xacro:property name="CAM_LASER_X_BIAS" value="0.1"/>
+    
     <!-- 属性封装 -->
     <xacro:property name="M_PI" value="3.14159"/>
 
@@ -38,7 +40,7 @@
     <!-- D435i RGB-D相机相关 -->
     <xacro:include filename="$(find realsense_ros_gazebo)/xacro/depthcam.xacro"/>
     <xacro:realsense_d435 sensor_name="camera" parent_link="base_link" rate="30.0">
-    <origin rpy="0 0 0" xyz="0 0 0.3"/>
+    <origin rpy="0 0 0" xyz="${CAM_LASER_X_BIAS} 0 0.3"/>
     </xacro:realsense_d435>
 
     <!-- VLP16 激光雷达 -->
@@ -53,16 +55,17 @@
   <xacro:include filename="$(find scout_gazebo)/urdf/livox_avia.xacro"/>
   <Livox_Avia name="livox" visualize="false" publish_pointcloud_type="0"/>
   
-    <!-- <xacro:include filename="$(find livox_laser_simulation)/urdf/livox_horizon.xacro"/>
-  <Livox_Horizon name="livox" visualize="true" publish_pointcloud_type="2"/> -->
-
-<!--    <xacro:include filename="$(find scout_gazebo)/urdf/livox_avia.xacro"/>
-    <xacro:Livox_AVIA name="livox" visualize="true" parent="support"/>-->
-    <joint name="livox_base_joint" type="fixed">
+<!--    <joint name="livox_base_joint" type="fixed">
         <parent link="support"/>
         <child link="livox_base"/>
         <origin rpy="0 0 0"
                 xyz="0.04 0 ${support_length/2}"/>
+    </joint>-->
+    <joint name="livox_base_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="livox_base"/>
+        <origin rpy="0 0 0"
+                xyz="${CAM_LASER_X_BIAS} 0 0.4"/>
     </joint>
     
     <!-- IMU 模块 -->
