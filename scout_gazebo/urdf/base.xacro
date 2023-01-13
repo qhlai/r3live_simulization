@@ -49,6 +49,7 @@
     <xacro:VLP-16 parent="support" name="velodyne" topic="/velodyne_points" organize_cloud="${organize_cloud}" hz="10" samples="440" gpu="${gpu}">
           <origin xyz="0 0 ${support_length/2}" rpy="0 0 0" />
     </xacro:VLP-16-->
+    
     <!-- livox AVIA激光雷达 -->
     <xacro:include filename="$(find scout_gazebo)/urdf/laser_support.xacro" />
     
